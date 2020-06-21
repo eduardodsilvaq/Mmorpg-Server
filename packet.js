@@ -2,7 +2,7 @@
  * Created by rm2kdev on 27/11/2014.
  */
 
-var zeroBuffer = new Buffer('00', 'hex');
+var zeroBuffer = Buffer.from('00', 'hex');
 
 module.exports = packet = {
 
@@ -16,11 +16,11 @@ module.exports = packet = {
             var buffer;
 
             if(typeof param === 'string'){
-                buffer = new Buffer(param, 'utf8');
+                buffer = Buffer.from(param, 'utf8');
                 buffer = Buffer.concat([buffer, zeroBuffer], buffer.length + 1)
             }
             else if (typeof param === 'number'){
-                buffer = new Buffer(2);
+                buffer = Buffer.alloc(2);
                 buffer.writeUInt16LE(param, 0);
             }
             else {
@@ -34,7 +34,7 @@ module.exports = packet = {
 
         var dataBuffer = Buffer.concat(packetParts, packetSize);
 
-        var size = new Buffer(1);
+        var size = Buffer.alloc(1);
         size.writeUInt8(dataBuffer.length + 1, 0);
 
         var finalPacket = Buffer.concat([size, dataBuffer], size.length + dataBuffer.length);
@@ -51,7 +51,7 @@ module.exports = packet = {
         while( idx < data.length ){
 
             var packetSize = data.readUInt8(idx);
-            var extractedPacket = new Buffer(packetSize);
+            var extractedPacket = Buffer.from(packetSize);
             data.copy(extractedPacket, 0, idx, idx + packetSize)
 
             this.interpret(c, extractedPacket);
