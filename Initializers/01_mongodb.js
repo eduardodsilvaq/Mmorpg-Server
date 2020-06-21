@@ -3,4 +3,4 @@
  */
 var mongoose = require('mongoose');
 
-module.exports = gamedb = mongoose.createConnection(config.database);
+module.exports = gamedb = mongoose.createConnection(config.database, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true });
