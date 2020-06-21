@@ -51,7 +51,7 @@ module.exports = packet = {
         while( idx < data.length ){
 
             var packetSize = data.readUInt8(idx);
-            var extractedPacket = new Buffer(packetSize);
+            var extractedPacket = Buffer.alloc(packetSize);
             data.copy(extractedPacket, 0, idx, idx + packetSize)
 
             this.interpret(c, extractedPacket);
