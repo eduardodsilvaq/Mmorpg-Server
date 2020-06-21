@@ -26,13 +26,13 @@ var conf = {
     production: {
         ip: args.ip || "0.0.0.0",
         port: args.port || 8081,
-        database: "mongodb://127.0.0.1/rm2mmo_prod"
+        database: "mongodb://127.0.0.1:27017/rm2mmo_prod"
     },
 
     test: {
         ip: args.ip || "0.0.0.0",
         port: args.port || 8082,
-        database: "mongodb://127.0.0.1/rm2mmo_test"
+        database: "mongodb://127.0.0.1:27017/rm2mmo_test"
     }
 };
 
